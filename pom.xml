@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.kumuluz.ee.jnosql</groupId>
+    <artifactId>kumuluzee-jnosql</artifactId>
+    <packaging>pom</packaging>
+    <version>1.0.0-SNAPSHOT</version>
+    <modules>
+        <module>common</module>
+        <module>graph</module>
+    </modules>
+
+    <properties>
+        <maven.compile.targetLevel>11</maven.compile.targetLevel>
+        <maven.compile.sourceLevel>11</maven.compile.sourceLevel>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+        <kumuluzee-nosql-common.version>1.0.0-SNAPSHOT</kumuluzee-nosql-common.version>
+
+        <kumuluzee.version>3.5.0</kumuluzee.version>
+
+        <jnosql-artemis.version>0.0.9</jnosql-artemis.version>
+    </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>com.kumuluz.ee</groupId>
+                <artifactId>kumuluzee-bom</artifactId>
+                <version>${kumuluzee.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>com.kumuluz.ee.jnosql</groupId>
+                <artifactId>kumuluzee-jnosql-common</artifactId>
+                <version>${kumuluzee-nosql-common.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.jnosql.artemis</groupId>
+                <artifactId>artemis-configuration</artifactId>
+                <version>${jnosql-artemis.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.jnosql.artemis</groupId>
+                <artifactId>artemis-graph</artifactId>
+                <version>${jnosql-artemis.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+</project>

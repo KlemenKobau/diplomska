@@ -1,0 +1,17 @@
+# ignore everything
+*
+
+# whitelist directories
+!*/
+
+# whitelisting files
+!.gitignore
+!docker-compose.yaml
+
+!pom.xml
+!bean.xml
+
+!*.java
+
+# blacklist all target dirs
+*/target
