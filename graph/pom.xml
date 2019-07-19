@@ -20,5 +20,9 @@
             <groupId>org.jnosql.artemis</groupId>
             <artifactId>artemis-graph</artifactId>
         </dependency>
+        <dependency>
+            <groupId>org.apache.tinkerpop</groupId>
+            <artifactId>gremlin-core</artifactId>
+        </dependency>
     </dependencies>
 </project>

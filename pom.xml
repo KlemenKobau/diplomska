@@ -14,8 +14,8 @@
     </modules>
 
     <properties>
-        <maven.compile.targetLevel>11</maven.compile.targetLevel>
-        <maven.compile.sourceLevel>11</maven.compile.sourceLevel>
+        <maven.compiler.source>11</maven.compiler.source>
+        <maven.compiler.target>11</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
         <kumuluzee-nosql-common.version>1.0.0-SNAPSHOT</kumuluzee-nosql-common.version>
@@ -23,6 +23,7 @@
         <kumuluzee.version>3.5.0</kumuluzee.version>
 
         <jnosql-artemis.version>0.0.9</jnosql-artemis.version>
+        <apache-gremlin-core.version>3.4.2</apache-gremlin-core.version>
     </properties>
 
     <dependencyManagement>
@@ -48,6 +49,11 @@
                 <groupId>org.jnosql.artemis</groupId>
                 <artifactId>artemis-graph</artifactId>
                 <version>${jnosql-artemis.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.tinkerpop</groupId>
+                <artifactId>gremlin-core</artifactId>
+                <version>${apache-gremlin-core.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

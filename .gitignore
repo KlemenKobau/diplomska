@@ -9,7 +9,7 @@
 !docker-compose.yaml
 
 !pom.xml
-!bean.xml
+!beans.xml
 
 !*.java
 
