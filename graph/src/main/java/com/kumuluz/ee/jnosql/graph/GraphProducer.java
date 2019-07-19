@@ -1,5 +1,7 @@
 package com.kumuluz.ee.jnosql.graph;
 
+import org.apache.commons.configuration.BaseConfiguration;
+import org.apache.commons.configuration.Configuration;
 import org.apache.tinkerpop.gremlin.structure.Graph;
 import org.apache.tinkerpop.gremlin.structure.util.GraphFactory;
 
@@ -32,6 +34,10 @@ public class GraphProducer {
 
 	@PostConstruct
 	private void init() {
-		this.graph = GraphFactory.open(settings);
+		Configuration configuration = new BaseConfiguration();
+		for (Map.Entry<String, String> stringStringEntry : settings.entrySet()) {
+			configuration.addProperty(stringStringEntry.getKey(), stringStringEntry.getValue());
+		}
+		this.graph = GraphFactory.open(configuration);
 	}
 }
