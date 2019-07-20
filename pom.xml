@@ -11,6 +11,7 @@
     <modules>
         <module>common</module>
         <module>graph</module>
+        <module>keyvalue</module>
     </modules>
 
     <properties>
@@ -48,6 +49,11 @@
             <dependency>
                 <groupId>org.jnosql.artemis</groupId>
                 <artifactId>artemis-graph</artifactId>
+                <version>${jnosql-artemis.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.jnosql.artemis</groupId>
+                <artifactId>artemis-key-value</artifactId>
                 <version>${jnosql-artemis.version}</version>
             </dependency>
             <dependency>
