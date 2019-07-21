@@ -13,6 +13,7 @@
         <module>graph</module>
         <module>keyvalue</module>
         <module>column</module>
+        <module>document</module>
     </modules>
 
     <properties>
@@ -60,6 +61,11 @@
             <dependency>
                 <groupId>org.jnosql.artemis</groupId>
                 <artifactId>artemis-column</artifactId>
+                <version>${jnosql-artemis.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.jnosql.artemis</groupId>
+                <artifactId>artemis-document</artifactId>
                 <version>${jnosql-artemis.version}</version>
             </dependency>
             <dependency>

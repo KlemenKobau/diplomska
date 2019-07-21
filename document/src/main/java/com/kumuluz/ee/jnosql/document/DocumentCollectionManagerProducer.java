@@ -1,9 +1,9 @@
-package com.kumuluz.ee.jnosql.column;
+package com.kumuluz.ee.jnosql.document;
 
 import org.jnosql.diana.api.Settings;
-import org.jnosql.diana.api.column.ColumnConfiguration;
-import org.jnosql.diana.api.column.ColumnFamilyManager;
-import org.jnosql.diana.api.column.ColumnFamilyManagerFactory;
+import org.jnosql.diana.api.document.DocumentCollectionManager;
+import org.jnosql.diana.api.document.DocumentCollectionManagerFactory;
+import org.jnosql.diana.api.document.DocumentConfiguration;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.ApplicationScoped;
@@ -13,33 +13,34 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.Map;
 
 @ApplicationScoped
-public class ColumnFamilyManagerProducer {
+public class DocumentCollectionManagerProducer {
 
-	private static String keySpace = "";
-	private static String columnConfigClassName;
+	private static String collection = "";
+	private static String documentConfigClassName;
 	private static Map<String, Object> settings;
 
-	private ColumnConfiguration configuration;
-	private ColumnFamilyManagerFactory managerFactory;
+	private DocumentConfiguration configuration;
 
-	static void setKeySpace(String keySpace) {
-		ColumnFamilyManagerProducer.keySpace = keySpace;
+	private DocumentCollectionManagerFactory managerFactory;
+
+	static void setCollection(String collection) {
+		DocumentCollectionManagerProducer.collection = collection;
 	}
 
-	static void setColumnConfigClassName(String columnConfigClassName) {
-		ColumnFamilyManagerProducer.columnConfigClassName = columnConfigClassName;
+	static void setDocumentConfigClassName(String documentConfigClassName) {
+		DocumentCollectionManagerProducer.documentConfigClassName = documentConfigClassName;
 	}
 
 	static void setSettings(Map<String, Object> settings) {
-		ColumnFamilyManagerProducer.settings = settings;
+		DocumentCollectionManagerProducer.settings = settings;
 	}
 
 	@PostConstruct
 	private void init() {
 		try {
-			Class<?> keyValueConfigType = Class.forName(columnConfigClassName);
+			Class<?> keyValueConfigType = Class.forName(documentConfigClassName);
 			Constructor<?> constructor = keyValueConfigType.getConstructor();
-			configuration = (ColumnConfiguration) constructor.newInstance();
+			configuration = (DocumentConfiguration) constructor.newInstance();
 			managerFactory = configuration.get(Settings.of(settings));
 		} catch (ClassNotFoundException e) {
 			throw new RuntimeException("Key value configuration class has to be provided");
@@ -55,7 +56,7 @@ public class ColumnFamilyManagerProducer {
 	}
 
 	@Produces
-	public ColumnFamilyManager getManager() {
-		return managerFactory.get(keySpace);
+	public DocumentCollectionManager getManager() {
+		return managerFactory.get(collection);
 	}
 }
