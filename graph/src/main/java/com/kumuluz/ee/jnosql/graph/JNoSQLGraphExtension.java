@@ -34,6 +34,7 @@ public class JNoSQLGraphExtension implements Extension {
 		}
 	}
 
+	@Override
 	public void init(KumuluzServerWrapper kumuluzServerWrapper, EeConfig eeConfig) {
 		log.info("Initializing JNoSql graph extension");
 
@@ -47,6 +48,7 @@ public class JNoSQLGraphExtension implements Extension {
 		GraphProducer.setSettings(settings);
 	}
 
+	@Override
 	public void load() {
 	}
 }

@@ -1,4 +1,4 @@
-package com.kumuluz.ee.jnosql.keyvalue;
+package com.kumuluz.ee.jnosql.column;
 
 import com.kumuluz.ee.common.Extension;
 import com.kumuluz.ee.common.config.EeConfig;
@@ -21,12 +21,11 @@ import java.util.logging.Logger;
 		@EeComponentDependency(EeComponentType.JSON_B),
 		@EeComponentDependency(EeComponentType.CDI),
 		@EeComponentDependency(EeComponentType.SERVLET)})
-public class JNoSQLKeyValueExtension implements Extension {
+public class JNoSQLColumnExtension implements Extension {
+	private static final Logger log = Logger.getLogger(JNoSQLColumnExtension.class.getName());
+	private static final String SETTINGS_PATH = "kumuluzee.jnosql.column";
 
-	private static final Logger log = Logger.getLogger(JNoSQLKeyValueExtension.class.getName());
-	private static final String SETTINGS_PATH = "kumuluzee.jnosql.key-value";
-
-	private static void getKeyValueSettingsMap(List<String> settingNames, Map<String, Object> settingsMap) {
+	private static void getColumnSettingsMap(List<String> settingNames, Map<String, Object> settingsMap) {
 
 		for (String settingName : settingNames) {
 			Optional<String> valuePair = ConfigurationUtil.getInstance().get(SETTINGS_PATH + "." + settingName);
@@ -36,20 +35,19 @@ public class JNoSQLKeyValueExtension implements Extension {
 
 	@Override
 	public void init(KumuluzServerWrapper kumuluzServerWrapper, EeConfig eeConfig) {
-		log.info("Initializing JNoSql key value extension");
+		log.info("Initializing JNoSQL column extension");
 
 		ConfigurationUtil cfg = ConfigurationUtil.getInstance();
 
-		Optional<List<String>> keyValueSettings = cfg.getMapKeys(SETTINGS_PATH);
+		Optional<List<String>> columnSettings = cfg.getMapKeys(SETTINGS_PATH);
 		Map<String, Object> settings = new HashMap<>();
 
-		keyValueSettings.ifPresent(strings -> getKeyValueSettingsMap(strings, settings));
+		columnSettings.ifPresent(strings -> getColumnSettingsMap(strings, settings));
+		ColumnFamilyManagerProducer.setSettings(settings);
 
-		BucketManagerProducer.setSettings(settings);
-
-		cfg.get(SETTINGS_PATH + ".bucket").ifPresent(BucketManagerProducer::setBucket);
+		cfg.get(SETTINGS_PATH + ".key-space").ifPresent(ColumnFamilyManagerProducer::setKeySpace);
 		cfg.get(SETTINGS_PATH + ".config-class-name")
-				.ifPresentOrElse(BucketManagerProducer::setKeyValueConfigClassName
+				.ifPresentOrElse(ColumnFamilyManagerProducer::setColumnConfigClassName
 						, () -> log.severe("config class name must be provided"));
 	}
 

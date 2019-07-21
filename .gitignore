@@ -4,6 +4,9 @@
 # whitelist directories
 !*/
 
+# whitelist everything in
+!**/services/*
+
 # whitelisting files
 !.gitignore
 !docker-compose.yaml
