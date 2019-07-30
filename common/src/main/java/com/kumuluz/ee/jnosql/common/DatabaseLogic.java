@@ -1,5 +1,7 @@
 package com.kumuluz.ee.jnosql.common;
 
+import org.jnosql.artemis.DatabaseType;
+
 import javax.enterprise.util.Nonbinding;
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

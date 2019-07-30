@@ -1,5 +1,7 @@
 package com.kumuluz.ee.jnosql.common;
 
+import org.jnosql.artemis.DatabaseType;
+
 import javax.enterprise.context.Dependent;
 import javax.enterprise.inject.Any;
 import javax.enterprise.inject.spi.AnnotatedType;
@@ -83,7 +85,7 @@ public class DatabaseTemplate {
 
 	@SuppressWarnings("unchecked")
 	public <T> T insert(T entity) {
-		String methodName = null;
+		String methodName;
 
 		switch (databaseType) {
 			case KEY_VALUE:
