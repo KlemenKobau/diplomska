@@ -3,17 +3,13 @@ package com.kumuluz.ee.jnosql.common;
 import org.jnosql.artemis.DatabaseType;
 
 import javax.enterprise.context.Dependent;
-import javax.enterprise.inject.Any;
-import javax.enterprise.inject.spi.AnnotatedType;
-import javax.enterprise.inject.spi.Bean;
 import javax.enterprise.inject.spi.BeanManager;
+import javax.enterprise.inject.spi.CDI;
 import javax.enterprise.inject.spi.InjectionPoint;
-import javax.enterprise.util.AnnotationLiteral;
 import javax.inject.Inject;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -27,7 +23,7 @@ public class DatabaseTemplate {
 	private static final String documentTemplateClassName = "org.jnosql.artemis.document.DocumentTemplate";
 	private static final String keyValueTemplateClassName = "org.jnosql.artemis.key.KeyValueTemplate";
 
-	private Bean<?> databaseTemplate;
+	private Object databaseTemplate;
 	private Class<?> databaseClass;
 	private DatabaseType databaseType;
 
@@ -74,13 +70,8 @@ public class DatabaseTemplate {
 			e.printStackTrace();
 		}
 
-		AnnotatedType<DatabaseTemplate> annotatedType = bm.createAnnotatedType(DatabaseTemplate.class);
-		databaseTemplate = bm.createBean(bm.createBeanAttributes(annotatedType), DatabaseTemplate.class,
-				bm.getInjectionTargetFactory(annotatedType));
-
-		Set<Bean<?>> allBeans = bm.getBeans(Object.class, new AnnotationLiteral<Any>() {
-		});
-		allBeans.forEach(System.err::println);
+		databaseTemplate = CDI.current().select(databaseClass).get(); // TODO vraca napacen class, ker je ambiguous
+		System.err.println(databaseTemplate);
 	}
 
 	@SuppressWarnings("unchecked")
