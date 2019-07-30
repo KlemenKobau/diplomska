@@ -36,5 +36,9 @@
             <groupId>org.jnosql.artemis</groupId>
             <artifactId>artemis-configuration</artifactId>
         </dependency>
+        <dependency>
+            <groupId>org.jnosql.artemis</groupId>
+            <artifactId>artemis-core</artifactId>
+        </dependency>
     </dependencies>
 </project>
