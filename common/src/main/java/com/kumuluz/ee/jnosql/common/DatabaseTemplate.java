@@ -71,7 +71,6 @@ public class DatabaseTemplate {
 		}
 
 		databaseTemplate = CDI.current().select(databaseClass).get(); // TODO vraca napacen class, ker je ambiguous
-		System.err.println(databaseTemplate);
 	}
 
 	@SuppressWarnings("unchecked")
@@ -92,11 +91,10 @@ public class DatabaseTemplate {
 		}
 
 		try {
-			System.err.println(databaseTemplate.toString());
-			Method insertMethod = databaseTemplate.getClass().getMethod(methodName);
-			return ((T) insertMethod.invoke(databaseTemplate));
+            Method insertMethod = databaseTemplate.getClass().getMethod(methodName, Object.class);
+            return ((T) insertMethod.invoke(databaseTemplate, entity));
 		} catch (NoSuchMethodException e) {
-			log.log(Level.SEVERE, "This method doesn't exist for database type: " + databaseType.toString());
+            log.log(Level.SEVERE, "Method with name " + methodName + " doesn't exist for database type: " + databaseType.toString());
 		} catch (IllegalAccessException e) {
 			log.log(Level.SEVERE, "Illegal access", e);
 		} catch (InvocationTargetException e) {
