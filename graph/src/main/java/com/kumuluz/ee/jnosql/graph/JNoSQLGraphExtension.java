@@ -19,8 +19,7 @@ import java.util.logging.Logger;
 @EeComponentDependencies(value = {
 		@EeComponentDependency(EeComponentType.JSON_P),
 		@EeComponentDependency(EeComponentType.JSON_B),
-		@EeComponentDependency(EeComponentType.CDI),
-		@EeComponentDependency(EeComponentType.SERVLET)})
+		@EeComponentDependency(EeComponentType.CDI)})
 public class JNoSQLGraphExtension implements Extension {
 
 	private static final Logger log = Logger.getLogger(JNoSQLGraphExtension.class.getName());
