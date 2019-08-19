@@ -29,7 +29,7 @@ public class JNoSQLGraphExtension implements Extension {
 
 		for (String settingName : settingNames) {
 			Optional<String> valuePair = ConfigurationUtil.getInstance().get(SETTINGS_PATH + "." + settingName);
-			valuePair.ifPresent(value -> settingsMap.put(settingName, value));
+			valuePair.ifPresent(value -> settingsMap.put(settingName.replace("-", "."), value));
 		}
 	}
 

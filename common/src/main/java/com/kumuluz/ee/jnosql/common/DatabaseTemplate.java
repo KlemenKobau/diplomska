@@ -47,7 +47,7 @@ public class DatabaseTemplate {
 			throw new RuntimeException(DatabaseTemplate.class.getName() + " has to be annotated with " + DatabaseLogic.class.getName());
 		}
 
-		databaseType = databaseAnnotation.databaseType();
+		databaseType = databaseAnnotation.value();
 
 		try {
 			switch (databaseType) {
@@ -78,10 +78,9 @@ public class DatabaseTemplate {
 
 	/**
 	 * Saves the entity, method is available for GRAPH, COLUMN and DOCUMENT databases
-	 *
 	 * @param entity entity to be saved, requires a field to be annotated with {@link org.jnosql.artemis.Id} when using
 	 *               a GRAPH database
-	 * @param <T>    entity class
+	 * @param <T> entity class
 	 * @return returns the saved entity
 	 */
 	@SuppressWarnings("unchecked")
@@ -114,10 +113,9 @@ public class DatabaseTemplate {
 	/**
 	 * Inserts an entity with time to live, after time is up the entity is deleted. Works with database types COLUMN and
 	 * DOCUMENT.
-	 *
 	 * @param entity entity to be inserted
-	 * @param ttl    duration of the entity
-	 * @param <T>    entity class
+	 * @param ttl duration of the entity
+	 * @param <T> entity class
 	 * @return returns the inserted entity
 	 */
 	@SuppressWarnings("unchecked")
@@ -149,9 +147,8 @@ public class DatabaseTemplate {
 	/**
 	 * Inserts entities, by default it just does multiple inserts, however some providers might override that. Works with
 	 * COLUMN, GRAPH and DOCUMENT databases.
-	 *
 	 * @param entities entities to be inserted.
-	 * @param <T>      entity class
+	 * @param <T> entity class
 	 * @return returns an iterable of saved entities.
 	 */
 	@SuppressWarnings("unchecked")
@@ -191,12 +188,11 @@ public class DatabaseTemplate {
 	}
 
 	/**
-	 * Inserts entities with time to live, by default it just does multiple inserts with time to live, however some providers might override that. Works with
-	 * COLUMN and DOCUMENT databases.
-	 *
+	 *  Inserts entities with time to live, by default it just does multiple inserts with time to live, however some providers might override that. Works with
+	 * 	COLUMN and DOCUMENT databases.
 	 * @param entities entities to be inserted
-	 * @param ttl      duration of the entities
-	 * @param <T>      class of the entities
+	 * @param ttl duration of the entities
+	 * @param <T> class of the entities
 	 * @return returns an iterable of inserted entities.
 	 */
 	@SuppressWarnings("unchecked")
@@ -228,9 +224,8 @@ public class DatabaseTemplate {
 	/**
 	 * Inserts an entity into the database, in case the entity has id provided and an entity with matching id is present in the database,
 	 * the the old entity will be deleted and the new one will be saved, available for KEY_VALUE databases
-	 *
 	 * @param entity the entity to be saved
-	 * @param <T>    class of the entity
+	 * @param <T> class of the entity
 	 * @return returns the put entity
 	 */
 	@SuppressWarnings("unchecked")
@@ -259,9 +254,8 @@ public class DatabaseTemplate {
 	/**
 	 * Update an entity, the new entity will update the old entity based on the provided id, works with DOCUMENT,
 	 * COLUMN and GRAPH databases.
-	 *
 	 * @param entity the entity used to update
-	 * @param <T>    entity class
+	 * @param <T> entity class
 	 * @return returns the updated entity
 	 */
 	@SuppressWarnings("unchecked")
