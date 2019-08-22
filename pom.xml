@@ -24,6 +24,7 @@
         <kumuluzee-nosql-common.version>1.0.0-SNAPSHOT</kumuluzee-nosql-common.version>
 
         <kumuluzee.version>3.5.0</kumuluzee.version>
+        <kumuluzee-rest.version>1.2.3</kumuluzee-rest.version>
 
         <jnosql-artemis.version>0.0.9</jnosql-artemis.version>
         <apache-gremlin-core.version>3.4.2</apache-gremlin-core.version>
@@ -37,6 +38,11 @@
                 <version>${kumuluzee.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>com.kumuluz.ee.rest</groupId>
+                <artifactId>kumuluzee-rest-core</artifactId>
+                <version>${kumuluzee-rest.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.kumuluz.ee.jnosql</groupId>
