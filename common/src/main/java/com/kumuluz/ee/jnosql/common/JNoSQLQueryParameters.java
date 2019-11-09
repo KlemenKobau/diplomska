@@ -6,6 +6,8 @@ import com.kumuluz.ee.rest.enums.OrderDirection;
 import org.jnosql.artemis.Pagination;
 import org.jnosql.artemis.Sorts;
 
+import javax.ws.rs.core.Context;
+import javax.ws.rs.core.UriInfo;
 import java.util.List;
 import java.util.Optional;
 
@@ -41,5 +43,12 @@ public class JNoSQLQueryParameters extends QueryParameters {
 
 		Pagination pagination = Pagination.page(offset / limit).size(limit);
 		return Optional.of(pagination);
+	}
+
+	@Context
+	private static UriInfo uriInfo;
+
+	public static void main(String[] args) {
+		JNoSQLQueryParameters parameters = JNoSQLQueryParameters.query(uriInfo.getRequestUri().getQuery()).build();
 	}
 }
