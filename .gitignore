@@ -15,6 +15,7 @@
 !beans.xml
 
 !*.java
+!*.md
 
 # blacklist all target dirs
 */target
